@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/pokemon",{useNewUrlParser:true, useUnifiedTopology:true
+mongoose.connect("mongodb://Valempz:1234@127.0.0.1:27017/pokemon",{useNewUrlParser:true, useUnifiedTopology:true
 })
 .then(() => console.log("conexion exitosa de bd"))
 .catch(err => console.log("error al conectar bd", err));
@@ -11,14 +11,19 @@ const pokemonSchema = new mongoose.Schema(
         tipo: String,
         nivel: Number,
     }
-);
+); 
 
-const pokemon = mongoose.Model("pokemon", pokemonSchema);
+const pokemon = mongoose.model("pokemones", pokemonSchema);
 
 const nuevoPokemon = new pokemon({
     nombre: "eevee",
     tipo: "Normal",
-    nivel: 32
+    nivel: 32,
+
+    nombre: "Charmender",
+    tipo: "Fuego",
+    nivel: 20
+
 
 });
 
@@ -26,4 +31,15 @@ nuevoPokemon.save()
 .then(() => console.log("se creo el pokemon"))
 .catch(err => console.log("error crear al pokemon", err));
 
-mongoose.disconnect()
+const nuevoPokemon2 = new pokemon({
+    nombre: "Charmender",
+    tipo: "Fuego",
+    nivel: 20
+
+});
+
+nuevoPokemon2.save()
+.then(() => console.log("se creo el segundo pokemon"))
+.catch(err => console.log("error al crear el segundo pokemon", err));
+
+//mongoose.disconnect()
