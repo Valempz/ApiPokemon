@@ -13,17 +13,12 @@ const pokemonSchema = new mongoose.Schema(
     }
 ); 
 
-const pokemon = mongoose.model("pokemones", pokemonSchema);
+const pokemonModel = mongoose.model("pokemones", pokemonSchema);
 
-const nuevoPokemon = new pokemon({
-    nombre: "eevee",
-    tipo: "Normal",
-    nivel: 32,
-
-    nombre: "Charmender",
+const nuevoPokemon = new pokemonModel({
+    nombre: "Charizard",
     tipo: "Fuego",
-    nivel: 20
-
+    nivel: 25,
 
 });
 
@@ -31,7 +26,7 @@ nuevoPokemon.save()
 .then(() => console.log("se creo el pokemon"))
 .catch(err => console.log("error crear al pokemon", err));
 
-const nuevoPokemon2 = new pokemon({
+const nuevoPokemon2 = new pokemonModel({
     nombre: "Charmender",
     tipo: "Fuego",
     nivel: 20
@@ -41,5 +36,9 @@ const nuevoPokemon2 = new pokemon({
 nuevoPokemon2.save()
 .then(() => console.log("se creo el segundo pokemon"))
 .catch(err => console.log("error al crear el segundo pokemon", err));
-
+ 
+//Leer todo los registros 
+pokemonModel.find()
+.then(pokemones => console.log("Estos son todos los pokemones: ", pokemones))
+.catch(err => console.log("Se produjo un error al leer los pokemones", err));
 //mongoose.disconnect()
